@@ -1,0 +1,279 @@
+<!--
+	User interface for GetProxyList.com API
+    Copyright (C) 2018  Michael Bergen
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get proxy</title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="manifest.json">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="msapplication-TileColor" content="#00bcd4">
+	<meta name="msapplication-config" content="browserconfig.xml">
+	<meta name="theme-color" content="#00bcd4">
+
+    <script type="text/javascript">
+        // BASICS
+        function makeFrame(noanim) {
+            var frame = document.createElement('div');
+            if(noanim) frame.className = 'topframe open';
+            else frame.className = 'topframe';
+            var div = document.createElement('div');
+            frame.appendChild(div);
+            var h = document.createElement('header');
+            var m = document.createElement('main');
+            div.appendChild(h);
+            div.appendChild(m);
+            document.body.appendChild(frame);
+
+            if(!noanim) setTimeout(function(){
+                frame.classList.add('open');
+            },50);
+
+            var c = function() {
+                frame.classList.remove('open');
+                setTimeout(function(){frame.remove();},500);
+            };
+
+            return {main: m, header: h, frame: frame, close: c};
+        }
+        function isDefined(v) {
+            // Check that iut is not null or undef.
+            if(v == null) return false;
+            if(typeof v == 'undefined') return false;
+            if(v == undefined) return false;
+            return true;
+        }
+
+        // Small functions
+        function mkbtn(inner, click) {
+            var b = document.createElement('button');
+            b.innerHTML = inner;
+            b.onclick = click;
+            return b;
+        }
+
+        function mkdiv(cn, id, inner) {
+            var d = document.createElement('div');
+            if(cn != null) d.className = cn;
+            if(id != null) d.id = id;
+            if(inner != null) d.innerHTML = inner;
+            return d;
+        }
+
+        function mka(cn, id, inner) {
+            var d = document.createElement('a');
+            if(cn != null) d.className = cn;
+            if(id != null) d.id = id;
+            if(inner != null) d.innerHTML = inner;
+            return d;
+        }
+
+    </script>
+    <style>
+    /*PWAUI*/
+    body {background-color: #f4f4f4; margin: 0 auto; font-family: Arial; overflow: hidden; max-height: 100%; position: absolute; top: 0;left: 0; width: 100%; height: 100%; } header {height: 56px; line-height: 56px; font-weight: 500; font-size: 1.2rem; display: flex; color: #555; position: relative;cursor:default; -moz-user-select: none; -khtml-user-select: none; user-select: none; -webkit-user-select: none; -ms-user-select: none; } header > div {padding-left:8px} button:focus {outline: none} .center {text-align: center} .flex {flex: 1} .hide {display: none} button {background-color: transparent; text-transform: uppercase; border: none; color: #777;transition: all 0.5s; line-height: 40px;min-width: 64px; text-align:center; -moz-user-select: none; -khtml-user-select: none; user-select: none; -webkit-user-select: none; -ms-user-select: none; } button:hover {background-color: #eee} button:active {background-color: #e7e7e7} button .material-icons {font-size: 18px} .topframe {background-color: transparent; position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background 0.25s; display: block; z-index: 2 } .topframe > div {position: absolute; top:0; left:100%; width: 100%; height: 100%; background-color: #f4f4f4; transition: left 0.25s; overflow: auto;flex-direction: column;display: flex; } .topframe.open {background-color: rgba(0,0,0,0.2);} .topframe.open > div {left: 0;} input {border: none; background-color: transparent; outline: none; border-bottom: thin #eee solid;font-size: 16px;font-family: monospace; line-height: 32px; } input:focus {border-color: #09f;}
+
+    header {background-color: #555; color: #fff;margin-bottom: 8px;box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);}
+    header button {color: #fff;}
+    .material-icons {position: relative;top: 4px;}
+    button:hover {background-color: rgba(0,0,0,0.05)}
+    button:active {background-color: rgba(0,0,0,0.1)}
+    .menu > div {line-height: 48px; margin: 0; padding: 0 8px; border-bottom: thin #f2f2f2 solid; cursor: default; transition: all 0.5s; -moz-user-select: none; -khtml-user-select: none; user-select: none; -webkit-user-select: none; -ms-user-select: none;cursor:default } .menu > div:hover {background-color: rgba(0,0,0,0.05)} .menu > div:active {background-color: rgba(0,0,0,0.1)} .menu > div .material-icons {font-size:24px; padding: 0 2px; position:relative; top:6px; color:#555 } 
+    main {overflow: auto; flex: 1;}
+    .bigico i {
+        font-size: 72px;
+        padding: 0.25em;
+        background-color: #aaa;
+        color: #f4f4f4;
+        border-radius: 50%;
+        margin: 0.25em;
+        -moz-user-select: none; -khtml-user-select: none; user-select: none;
+        -webkit-user-select: none; -ms-user-select: none;
+    }
+    .bigico-footer {
+        color: #aaa;
+        font-size: 1rem;
+        -moz-user-select: none; -khtml-user-select: none; user-select: none;
+        -webkit-user-select: none; -ms-user-select: none;
+    }
+    @media all and (max-width: 768px) {
+        .inputs {display: block}
+        .area {width: 100%;box-sizing: border-box;margin: 0;}
+    }
+    .output {
+    	font-size: 1.4em;
+    	font-weight: bold;
+    	margin: 4px;
+    }
+    </style> 
+</head>
+<body>
+	<script type="text/javascript">
+		var settings = {};
+		if(localStorage.gpSettings) try{
+			settings = JSON.parse(localStorage.gpSettings);
+		} catch(e) {}
+
+		function formirateUrl() {
+			var str = '';
+			// Cleanup from 'null'-s
+			for(var a in settings) if(settings[a] == 'null') delete settings[a];
+			// Url?
+			settings.backend ? str = settings.backend+"?" : str = "https://api.getproxylist.com/proxy?";
+			// Import parameters (that not need preparing)
+			var params = {
+				// varname: "getparamname"
+				apikey: "apiKey", country: "country",
+				minSpeed: "minDownloadSpeed", minUptime: "minUptime",
+				protocol: "protocol"
+			}
+			for(var a in params) settings[a] ? str += params[a]+'='+settings[a]+'&' : null;
+			// Flags
+			if(settings.flags) {
+				var flags = settings.flags.split(" ");
+				for(var a in flags) str += flags[a]+'='+'true&'
+			}
+			// Remove last charster
+			str = str.substr(0,str.length-1);
+			return str;
+		}
+
+		function doit() {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET",formirateUrl());
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					logbox.innerHTML += 'Complete. Reading answer...\n\n';
+					logbox.innerHTML += 'Status: '+xhr.status+'\nAnswer: '+xhr.responseText+'\n\n';
+					if(xhr.status == 200) {
+						try{
+
+							var data = JSON.parse(xhr.responseText);
+
+							if(data.error) {
+								logbox.innerHTML += "ERROR: "+data.error;
+								outdiv.innerHTML = 'Error!';
+								return;
+							} else {
+								outdiv.innerHTML = data.ip+':'+data.port;
+							}
+
+						} catch(e) {
+							logbox.innerHTML += "ERROR: "+e;
+							outdiv.innerHTML = 'Error!';
+							return;
+						}
+					} else outdiv.innerHTML = 'Error!';
+				}
+			};
+			logbox.innerHTML = 'Send request...\nURL: '+formirateUrl()+'\n';
+			xhr.send();
+		}
+
+		var main = makeFrame(true);
+		main.header.appendChild(mkdiv('flex',null,'Get proxy'));
+
+		// Output box
+		var out = mkdiv('center',null),
+			outdiv = mkdiv('output',null,'None'),
+			outbtn = mkbtn('Get proxy',doit);
+			prebtn = mkbtn('Request preview',function(){alert(formirateUrl())});
+
+		out.appendChild(outdiv);
+		out.appendChild(outbtn);
+		out.appendChild(prebtn);
+		main.main.appendChild(out);
+
+		// Settings box
+		var menu = mkdiv('menu');
+		main.main.appendChild(menu);
+
+		function addParam(name, func) {
+			var div = mkdiv(); div.innerHTML = name;
+			div.onclick = func; menu.appendChild(div);
+		}
+
+		addParam(!settings.backend ? 'Enable backend mirror' : 'Backend:'+settings.backend, function(){
+			settings.backend = prompt("Enter backend URL. Clear to disable:",settings.backend);
+			this.innerHTML = (!settings.backend ? 'Enable backend mirror' 
+							: 'Backend:'+settings.backend);
+		});
+
+		addParam(!settings.protocol ? "Select protocol" : "Type: "+settings.protocol,function() {
+			settings.protocol = prompt("Enter proxy protocol, e.g. http, socks5:",settings.protocol);
+			this.innerHTML = (!settings.protocol ? "Select protocol" : "Type: "+settings.protocol);
+		});
+
+		addParam(!settings.country ? "Select country" : "Country: "+settings.country,function() {
+			settings.country = prompt("Enter 2-dig country label (e.g. us, ru):",settings.country);
+			this.innerHTML = (!settings.country ? "Select country" : "Country: "+settings.country);
+		});
+
+		addParam(!settings.minUptime ? "Set minimum uptime" : "Min uptime: "+settings.minUptime, function() {
+			settings.minUptime = prompt("Enter min-uptime in %:",settings.minUptime);
+			this.innerHTML = (!settings.minUptime ? "Set minimum uptime" : "Min uptime: "+settings.minUptime);
+		});
+
+		addParam(!settings.minSpeed ? "Set minimum download speed" : "Min speed: "+settings.minSpeed, function() {
+			settings.minSpeed = prompt("Enter min-speed in Kb/s:",settings.minSpeed);
+			this.innerHTML = (!settings.minSpeed ? "Set minimum download speed" : "Min speed: "+settings.minSpeed);
+		});
+
+		addParam(!settings.apikey ? "Enter API key" : "Modify API key", function() {
+			settings.apikey = prompt("Enter API key, if you have them:");
+			this.innerHTML = (!settings.apikey ? "Enter API key" : "Modify API key");
+		});
+
+		addParam(!settings.flags ? "Enter flags" : "Flags: "+settings.flags, function() {
+			settings.flags = prompt("Enter flags, sepreate with space, e.g. \"allowsHttps, all\"\n Aviable: all, allowsHttps, allowsPost, allowsCookies, allowsCustomHeaders, allowsUserAgentHeader, allowsRefererHeader",settings.flags);
+			this.innerHTML = (!settings.flags ? "Enter flags" : "Flags: "+settings.flags);
+		});
+
+		addParam("Save settings (Unprotected storage)",function() {
+			localStorage.gpSettings = JSON.stringify(settings);
+		});
+
+		addParam("Toggle logs view", function(){
+			logbox.classList.toggle("hide");
+		})
+
+		// Create logcat
+		var logbox = document.createElement('pre');
+		logbox.className = 'hide';
+		main.main.appendChild(logbox);
+
+		if ('serviceWorker' in navigator) {
+		 window.addEventListener('load', function() {
+		   navigator.serviceWorker.register('/sw.js').then(
+			 function(registration) {
+			   // Registration was successful
+			   console.log('ServiceWorker registration successful with scope: ', registration.scope); },
+			 function(err) {
+			   // registration failed :(
+			   console.log('ServiceWorker registration failed: ', err);
+			 });
+		 });
+		}
+	</script>
+</body>
+</html>
