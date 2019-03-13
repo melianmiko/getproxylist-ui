@@ -1,0 +1,517 @@
+body {
+  font-size: 16px;
+}
+
+.fw-textedit {
+  padding: 6px;
+}
+.fw-textedit .holder {
+  color: #0099ff;
+  font-size: 0.7em;
+}
+.fw-textedit .input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px #ccc solid;
+  display: block;
+  padding: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.fw-textedit .input:focus {
+  border-color: #0099ff;
+}
+.fw-textedit textarea {
+  font-family: Roboto, Arial;
+}
+
+.fw-button.style-flat {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin: 6px;
+  color: #0099ff;
+}
+.fw-button.style-flat:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.fw-button.style-flat:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.fw-button.style-big, .fw-button.style-big-center {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 12px;
+  background: #0099ff;
+  font-size: 1.1em;
+  color: #fff;
+}
+.fw-button.style-big:hover, .fw-button.style-big-center:hover {
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.1);
+}
+.fw-button.style-big:active, .fw-button.style-big-center:active {
+  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+}
+.fw-button.style-big-center, .fw-button.style-big-center-center {
+  display: block;
+  max-width: 14em;
+  margin: 12px auto;
+}
+
+.fw-inputlock {
+  cursor: progress;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fw-bcfg-bigfont {
+  font-size: 1.4em;
+}
+
+.fw-dragzone {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.material-icons {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+
+.fw-textview-style-title, .fw-textview-style-title-center {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 8px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+.fw-textview-style-title-center, .fw-textview-style-title-center-center {
+  text-align: center;
+}
+
+.fw-spinactivity {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.fw-pager-view {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #eeeeee;
+  overflow: hidden;
+}
+.fw-pager-view .fw-pager-wrapper {
+  position: relative;
+  top: 0;
+  height: 100%;
+  left: 0;
+}
+.fw-pager-view .fw-pager-wrapper .fw-page {
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow: auto;
+}
+.fw-pager-view .fw-pager-wrapper .fw-page .container {
+  max-width: 560px;
+  margin: auto;
+}
+.fw-pager-view .fw-pager-wrapper .fw-page .filler {
+  min-height: 56px;
+}
+
+.fw-iconbtn {
+  margin: 4px;
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+  display: inline-block;
+  background: transparent;
+  transition: background 0.5s;
+}
+.fw-iconbtn :hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.fw-iconbtn :active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.fw-iconbtn .material-icons {
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.fw-activity {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, Arial;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.fw-activity .container {
+  max-width: 560px;
+  margin: auto;
+}
+.fw-activity .ab-zone {
+  z-index: 5;
+}
+.fw-activity .fw-topbar {
+  min-height: 56px;
+  z-index: 5;
+}
+.fw-activity .fw-topbar .container {
+  display: flex;
+}
+.fw-activity .fw-topbar.ab-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.fw-activity .fw-topbar.ab-fixed .container {
+  max-width: 560px;
+  margin: auto;
+}
+.fw-activity .fw-topbar .zone-left, .fw-activity .fw-topbar .zone-right, .fw-activity .fw-topbar .zone-home {
+  display: flex;
+  cursor: pointer;
+}
+.fw-activity .fw-topbar .zone-left .ab-btn, .fw-activity .fw-topbar .zone-right .ab-btn, .fw-activity .fw-topbar .zone-home .ab-btn {
+  margin: 8px;
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  transition: background 0.5s;
+}
+.fw-activity .fw-topbar .zone-left .ab-btn :hover, .fw-activity .fw-topbar .zone-right .ab-btn :hover, .fw-activity .fw-topbar .zone-home .ab-btn :hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.fw-activity .fw-topbar .zone-left .ab-btn :active, .fw-activity .fw-topbar .zone-right .ab-btn :active, .fw-activity .fw-topbar .zone-home .ab-btn :active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.fw-activity .fw-topbar .zone-left .ab-btn .material-icons, .fw-activity .fw-topbar .zone-right .ab-btn .material-icons, .fw-activity .fw-topbar .zone-home .ab-btn .material-icons {
+  font-size: 24px;
+  padding: 8px;
+  border-radius: 50%;
+  color: #0099ff;
+}
+.fw-activity .fw-topbar .zone-title {
+  display: flex;
+  flex: 1;
+  font-size: 16px;
+  padding: 20px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+
+.fw-spinner {
+  color: #0099ff;
+  font-size: 6px;
+  text-indent: -99999em;
+  margin: 0.5em auto;
+  position: relative;
+  width: 10em;
+  height: 10em;
+  box-shadow: inset 0 0 0 1em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.fw-spinner, .fw-spinner:before, .fw-spinner:after {
+  border-radius: 50%;
+}
+.fw-spinner:before, .fw-spinner:after {
+  position: absolute;
+  content: "";
+}
+.fw-spinner:before {
+  width: 5.2em;
+  height: 10.2em;
+  background: #ffffff;
+  border-radius: 10.2em 0 0 10.2em;
+  top: -0.1em;
+  left: -0.1em;
+  transform-origin: 5.2em 5.1em;
+  animation: load2 2s infinite ease 1.5s;
+}
+.fw-spinner:after {
+  width: 5.2em;
+  height: 10.2em;
+  background: #ffffff;
+  border-radius: 0 10.2em 10.2em 0;
+  top: -0.1em;
+  left: 5.1em;
+  transform-origin: 0px 5.1em;
+  animation: load2 2s infinite ease;
+}
+
+@keyframes load2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fw-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, Arial;
+  transition: opacity 0.25s;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fw-dialog .container {
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px;
+}
+.fw-dialog .container .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  padding: 12px 0;
+}
+.fw-dialog .container .message {
+  margin-bottom: 8px;
+}
+.fw-dialog .container .title, .fw-dialog .container .message {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+
+.fw-listitem {
+  border-bottom: thin #eee solid;
+  padding: 4px;
+}
+.fw-listitem .item-title {
+  font-size: 0.7em;
+  padding: 4px 8px;
+  color: #555;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+.fw-listitem.normal {
+  transition: background 0.5s;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+  padding: 0.8em;
+}
+.fw-listitem.normal:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.fw-listitem.normal:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.fw-listitem.textedit .input {
+  border: none;
+  background: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: 8px;
+}
+.fw-listitem.textedit .input.ta {
+  resize: none;
+  height: 40px;
+  font-family: Roboto, Arial;
+}
+.fw-listitem.flex {
+  display: flex;
+}
+.fw-listitem.flex .flex-expand {
+  flex: 1;
+}
+.fw-listitem .material-icons {
+  color: #0099ff;
+  font-size: 20px;
+}
+
+.fw-contextmenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: background 0.5s;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, Arial;
+}
+.fw-contextmenu .cm-root {
+  position: absolute;
+  bottom: -100%;
+  background: #fff;
+  max-height: 100%;
+  overflow: auto;
+  transition: bottom 0.5s;
+  width: 100%;
+}
+.fw-contextmenu.show {
+  background: rgba(0, 0, 0, 0.2);
+}
+.fw-contextmenu.show .cm-root {
+  bottom: 0;
+}
+
+.fw-listheader {
+  font-size: 0.7em;
+  padding: 4px 8px;
+  color: #0099ff;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  cursor: default;
+}
+
+.fw-bcfg-darkmode .fw-activity, .fw-bcfg-darkmode .fw-page, .fw-bcfg-darkmode .fw-dialog .container {
+  background: #000 !important;
+  color: #fff;
+}
+.fw-bcfg-darkmode .fw-pager-view {
+  background: #111;
+}
+.fw-bcfg-darkmode .fw-listitem {
+  border-color: #111;
+}
+.fw-bcfg-darkmode .fw-listitem.textedit .input,
+.fw-bcfg-darkmode .fw-textedit .input {
+  color: #fff;
+}
+.fw-bcfg-darkmode .fw-spinactivity, .fw-bcfg-darkmode .fw-spinner:after,
+.fw-bcfg-darkmode .fw-spinner:before {
+  background: #000;
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(MaterialIcons-Regular.woff) format("woff");
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+}
+
+input, button {
+  outline: none;
+}
+
+/*# sourceMappingURL=framework.css.map */
