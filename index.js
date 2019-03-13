@@ -101,7 +101,7 @@ class GPLUI extends Screen {
     }
 
     preview() {
-        var d = new Dialog().setMessage(this.buildURL())
+        var d = new Dialog().setMessage("<code style='max-width:260px;overflow:auto'>"+this.buildURL()+"</code>")
             .addButton(new Button().setText("Ok").setOnClickListener(function(){
                 d.hide();
             })).show();

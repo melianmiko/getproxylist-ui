@@ -100,7 +100,7 @@ body {
 }
 
 .fw-textview-style-title, .fw-textview-style-title-center {
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: bold;
   margin: 8px;
   -webkit-touch-callout: none;
